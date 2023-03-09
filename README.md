@@ -91,3 +91,13 @@
 현재 받은 `Annotation.json` 파일의 형식이 기존 `COCO`와 다르기 때문에 `COCO`형식으로 변환해 줘야합니다.
 `DataMerger.py`를 실행시킨 후 `result` 폴더내에 `train`,`label` 이있다면 위의 코드를 실행시키면 `AnnotationFixed` 라는 폴더가 생성되며
 `label`에 포함된 `json` 파일들을 `COCO` 형식으로 변환한뒤 `AnnotationFixed` 폴더내에 위치하게 됩니다.
+
+## ImgARG.py
+이미지나 어노테이션에 존재하는 데이터를 분석하는 코드입니다.
+
+`annotation`에 있는 질병의 종류와 갯수를 출력하려면 아래의 명령을 터미널에 입력하시면됩니다.
+```
+python ImgARG.py -a 'disease'
+or
+python ImgARG.py --analysis_type 'disease'
+```
