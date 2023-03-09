@@ -5,6 +5,11 @@ import glob
 
 def DataMerger():
     curdir = os.getcwd()
+    datachecker = os.path.join(curdir, '04_목포대_발송용')
+
+    if not os.path.exists(datachecker):
+        print('데이터가 존재하지 않습니다. 04_목포대_발송용 을 디렉토리에 위치시키세요')
+        return
 
     result = os.path.join(curdir, 'result')
     if not os.path.exists(result):
