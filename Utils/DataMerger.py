@@ -56,4 +56,5 @@ def DataMerger():
     print('JSON 데이터 merge 완료')
 
 
-DataMerger()
+if __name__ == "__main__":
+    DataMerger()
