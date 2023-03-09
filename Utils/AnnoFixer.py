@@ -53,7 +53,7 @@ class AnnoFixer:
             new_file_path = os.path.join(self.mergedir, fixed_file_name)
 
             with open(new_file_path, 'w') as f:
-                json.dump(data, f, indent=2)
+                json.dump(data, f, indent=intend)
 
         print("Annotation JSON 파일 수정 완료")
 
