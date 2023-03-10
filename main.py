@@ -1,6 +1,8 @@
 import argparse
 import os
 import json
+from Utils.AnnoFixer import AnnoFixer
+from Utils.DataMerger import DataMerger
 
 ap = argparse.ArgumentParser()
 
@@ -33,6 +35,7 @@ class ImageAnalysis:
         # print("어노테이션에 있는 질병 리스트")
         # print(self.DeseaseList)
 
+        # 질병의 갯수를 파악되고 중복된 질병은 제외합니다.
         for ADL in self.DeseaseList:
             if ADL not in self.countDict:
                 self.countDict[ADL] = 1
@@ -125,3 +128,7 @@ if __name__ == '__main__':
     LA = ImageAnalysis()
     if args['analysis_type'] == 'disease':
         LA.ImageDeseaseCount()
+    if args['analysis_type'] == 'merge':
+        DataMerger()
+    if args['analysis_type'] == 'fix':
+        AnnoFixer()
