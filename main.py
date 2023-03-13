@@ -30,3 +30,5 @@ if __name__ == '__main__':
         DataMerger()
     if args['analysis_type'] == 'fix':
         AnnoFixer()
+    if args['analysis_type'] == 'name':
+        LA.Label_Anno()
