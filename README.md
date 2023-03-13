@@ -109,3 +109,11 @@ python main.py -a 'disease' -s true
 or
 python main.py --analysis_type 'disease' --save_csv true
 ```
+
+`annotation` 이름과 어노테이션이 가리키는 이미지 파일 이름을 csv 파일로 출력하려면 아래의 명령을 터미널에 입력하세요.
+파일 위치는 `result` 폴더에 `AnnoName.csv` 라는 파일로 저장됩니다.
+```
+python main.py -a 'name'
+or
+python main.py --analysis_type 'name'
+```
