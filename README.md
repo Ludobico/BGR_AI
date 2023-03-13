@@ -101,3 +101,11 @@ python main.py -a 'disease'
 or
 python main.py --analysis_type 'disease'
 ```
+
+출력된 질병을 csv 파일로 저장하려면 아래의 명령을 터미널에 입력하세요.
+
+```
+python main.py -a 'disease' -s true
+or
+python main.py --analysis_type 'disease' --save_csv true
+```
