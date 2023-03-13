@@ -2,9 +2,16 @@ import argparse
 import os
 import json
 import csv
+import pandas as pd
 
 
 class ImageAnalysis:
+    def __init__(self):
+        self.curdir = os.getcwd()
+        self.resultdir = os.path.join(self.curdir, 'result')
+        self.labeldir = os.path.join(self.resultdir, 'label')
+        self.traindir = os.path.join(self.resultdir, 'train')
+
     def ImageDeseaseCount(self, csv_flag):
         self.DeseaseList = []
         self.countDict = {}
@@ -117,10 +124,10 @@ class ImageAnalysis:
 
         # CSV 파일로 저장할거냐
         if csv_flag == True:
-            with open(os.path.join(self.resultdir, 'data.txt'), 'w', encoding='UTF-8') as f:
-                f.write(json_string)
+            # with open(os.path.join(self.resultdir, 'data.txt'), 'w', encoding='UTF-8') as f:
+            #     f.write(json_string)
 
-            with open(os.path.join(self.resultdir, 'data.csv'), 'w', newline='', encoding='UTF-8') as csvfile:
+            with open(os.path.join(self.resultdir, 'DiseaseData.csv'), 'w', newline='', encoding='UTF-8') as csvfile:
                 writer = csv.writer(csvfile)
                 writer.writerow(['클래스 명', '개수', '질병', '증상'])
                 for k, v in self.txtdict.items():
@@ -135,4 +142,32 @@ class ImageAnalysis:
                         writer.writerow([k, v_list[0], v_list[1], v_list[2]])
 
             print("csv 파일 저장 완료")
-            print("경로 : {0}".format(self.resultdir))
+            print("경로 : {0} \ DiseaseData.csv".format(self.resultdir))
+
+    def Label_Anno(self):
+        labeldir = self.labeldir
+        resultdir = self.resultdir
+        filedict = {}
+
+        for file_name in os.listdir(labeldir):
+            file_path = os.path.join(labeldir, file_name)
+
+            file_split = file_name.split(".")[0]
+            file_split2 = file_split.split("_annotation")[0]
+
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+
+                # dict의 key에 annotation.json 파일의 이름을, value에 annotation 안의 image file_name을 담음
+                filedict[file_split2] = data['images']['file_name'].split(".")[
+                    0]
+
+        print(filedict)
+        df = pd.DataFrame(filedict.items(), columns=[
+                          '파일이름', '어노테이션 내의 이미지 이름'])
+        df.to_csv(os.path.join(resultdir, 'AnnoName.csv'), index=False)
+
+
+if __name__ == "__main__":
+    IA = ImageAnalysis()
+    IA.Label_Anno()

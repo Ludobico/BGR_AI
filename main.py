@@ -12,7 +12,8 @@ ap.add_argument("-a",
                 help='데이터셋을 분석해줍니다. -a "명령어" 인자로 실행할수있습니다.',
                 required=True)
 
-ap.add_argument("-s", "--save_csv", type=bool, default=False, required=False)
+ap.add_argument("-s", "--save_csv", type=bool, default=False,
+                required=False, help='분석한 질병을 csv파일로 저장하려면 -s true를 입력해주세요.')
 
 args = vars(ap.parse_args())
 
